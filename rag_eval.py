@@ -1,5 +1,6 @@
 import argparse, json, re, os
 from collections import Counter
+import math
 
 
 # --------------------- Normalization & SQuAD-style metrics --------------------- #
@@ -73,12 +74,10 @@ def ndcg_at_k(contexts: list[str], golds: list[str]) -> float:
             denom = (
                 (i + 1).bit_length() - 1 if i in (1,) else ((i + 1).bit_length() - 1)
             )  # fast approx
-            # safer exact:
-            import math
 
             denom = math.log2(i + 1)
             dcg += g / denom
-    # Ideal DCG: put a single 1 at rank 1 if any relevant exists; else 0
+
     idcg = 1.0 if any(gains) else 0.0
     return (dcg / idcg) if idcg > 0 else 0.0
 

@@ -1,6 +1,5 @@
 # finetune_biencoder.py
-# Light dual-encoder fine-tuning on SQuAD with InfoNCE (in-batch negatives).
-# Now with per-epoch validation and a train/val loss curve saved to out-dir.
+# Dual-encoder fine-tuning on SQuAD with InfoNCE (in-batch negatives).
 
 import argparse, os
 import random
@@ -50,7 +49,7 @@ class SquadQP(Dataset):
         q = ex["question"]
         ctx = ex["context"]
         ans = ex["answers"]["text"][0]
-        # Crude positive passage: window around first occurrence of the answer
+        # Window around first occurrence of the answer
         pos_start = ctx.lower().find(ans.lower())
         if pos_start == -1:
             p = ctx
@@ -241,7 +240,6 @@ def main():
 
     global_pbar.close()
 
-    # -------- Save checkpoints --------
     # -------- Save checkpoints --------
     enc_q_dir = os.path.join(args.out_dir, "encoder_q")
     enc_p_dir = os.path.join(args.out_dir, "encoder_p")

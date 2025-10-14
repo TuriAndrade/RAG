@@ -1,4 +1,3 @@
-# rag_generate_qa.py
 import argparse, os, json, faiss, torch
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModel
@@ -74,7 +73,7 @@ def main():
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # Retrieval encoder (same as before)
+    # Retrieval encoder
     qtok = AutoTokenizer.from_pretrained(args.tokenizer_q, use_fast=True)
     qenc = AutoModel.from_pretrained(args.encoder_q).to(device).eval()
     index, passages = load_store(args.store)
@@ -109,7 +108,7 @@ def main():
                 "question": q,
                 "prediction": pred,
                 "gold_answers": gold_texts,
-                "contexts": ctxs[: args.top_m],  # keep what you actually scored
+                "contexts": ctxs[: args.top_m],
                 "k": args.k,
             }
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")

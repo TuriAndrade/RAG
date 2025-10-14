@@ -20,10 +20,9 @@ from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModel
 
 
-# ------------------------- Chunking by tokens (no extra deps) ------------------------- #
+# ------------------------- Chunking by tokens  ------------------------- #
 def chunk_by_tokens(text: str, tokenizer, chunk_tokens: int, stride: int) -> List[str]:
     """Split a long string into overlapping token windows using the encoder tokenizer."""
-    # Use tokenizer call API; disable truncation here (we window manually after)
     ids = tokenizer(text, add_special_tokens=False, truncation=False)["input_ids"]
     chunks = []
     start = 0
@@ -106,14 +105,12 @@ def main():
     ap.add_argument(
         "--model", type=str, default="sentence-transformers/all-MiniLM-L6-v2"
     )
-    # New: multiple splits (comma-separated). Example: "train,validation"
     ap.add_argument(
         "--splits",
         type=str,
         default="train,validation",
         help="Comma-separated SQuAD splits to index (e.g., 'train' or 'train,validation').",
     )
-    # Interpreted as a PER-SPLIT cap for simplicity
     ap.add_argument(
         "--max-examples", type=int, default=10000, help="Per-split cap on SQuAD rows."
     )
@@ -165,7 +162,6 @@ def main():
         )
         print(f"  Split '{split_name}': {len(passages)} passages before dedup")
         all_passages.extend(passages)
-        # Tag the split name on metadata
         for m in metas:
             m["split"] = split_name
         all_metas.extend(metas)
