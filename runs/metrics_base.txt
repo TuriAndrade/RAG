@@ -1,0 +1,7 @@
+Preds file: runs/preds.jsonl
+Count: 300
+EM: 0.603333
+F1: 0.645290
+Hit@5: 0.780000
+MRR@5: 0.634167
+nDCG@5: 1.031110

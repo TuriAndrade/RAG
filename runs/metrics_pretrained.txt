@@ -1,0 +1,7 @@
+Preds file: ./runs/preds_pretrained.jsonl
+Count: 300
+EM: 0.646667
+F1: 0.689512
+Hit@5: 0.800000
+MRR@5: 0.646000
+nDCG@5: 1.072214

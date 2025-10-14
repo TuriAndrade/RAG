@@ -1,0 +1,13 @@
+torch
+transformers
+datasets
+peft
+accelerate
+safetensors
+tokenizers
+bitsandbytes
+sentencepiece
+matplotlib
+tqdm
+numpy
+faiss-cpu
