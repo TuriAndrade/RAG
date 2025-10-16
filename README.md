@@ -37,10 +37,10 @@ Both use the same:
 
 ## 📊 Results
 
-| Model | EM | F1 | Hit@5 | MRR@5 | nDCG@5 |
-|:------|----:|----:|----:|----:|----:|
-| **Base** | 0.6033 | 0.6453 | 0.7800 | 0.6342 | 1.0311 |
-| **Fine-tuned** | **0.6467** | **0.6895** | **0.8000** | **0.6460** | **1.0722** |
+| Model | EM | F1 | Hit@5 | MRR@5 |
+|:------|----:|----:|----:|----:|
+| **Base** | 0.6033 | 0.6453 | 0.7800 | 0.6342 |
+| **Fine-tuned** | **0.6467** | **0.6895** | **0.8000** | **0.6460** |
 
 ✅ **Improvements across all metrics**, showing that fine-tuning the retriever leads to better question–passage alignment and more accurate answers.
 
